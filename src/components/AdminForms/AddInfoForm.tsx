@@ -30,6 +30,7 @@ const AddInfoForm: React.FC<IAddInfoFormProps> = ({ setInfo, info }) => {
                 .min(1, "Длина от 1 до 20 сивмолов").max(25, "Длина от 2 до 25 сивмолов"),
         })
     })
+    
 
 
     return (

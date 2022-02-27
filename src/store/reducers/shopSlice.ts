@@ -10,9 +10,15 @@ const initialState: IShopState = {
     brands: [],
     products: [],
     productsLoading: false,
+    typeError: "",
+    brandError: "",
+    productError: "",
 
     activeBrand: {} as IBrand,
-    activeType: {} as IType
+    activeType: {} as IType,
+    page: 1,
+    totalCount: 0,
+    limit: 3
 }
 
 const shopSlice = createSlice({
@@ -21,15 +27,21 @@ const shopSlice = createSlice({
     reducers: {
         setActiveBrand(state, action: PayloadAction<IBrand>) {
             state.activeBrand = action.payload
+            state.page = 1
         },
         setActiveType(state, action: PayloadAction<IType>) {
             state.activeType = action.payload
+            state.page = 1
         },
+        setPage(state, action) {
+            state.page = action.payload
+        }
     },
 
     extraReducers: {
         [fetchProducts.fulfilled.type]: (state, action: PayloadAction<IShopResponse<IProduct>>) => {
             state.products = action.payload.rows
+            state.totalCount = action.payload.count
             state.productsLoading = false
         },
         [fetchProducts.rejected.type]: (state, action) => {
@@ -56,4 +68,4 @@ const shopSlice = createSlice({
 
 export default shopSlice.reducer
 
-export const { setActiveBrand, setActiveType } = shopSlice.actions
+export const { setActiveBrand, setActiveType, setPage } = shopSlice.actions

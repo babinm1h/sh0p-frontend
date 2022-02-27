@@ -7,11 +7,16 @@ import ImgUpload from '../ImgUpload/ImgUpload';
 import AddInfoForm from './AddInfoForm';
 import { AiFillCloseCircle } from "react-icons/ai"
 import { IProductInfo } from '../../types/DBmodels';
+import { useDispatch } from 'react-redux';
+import { createProduct } from '../../store/actions/shop';
 
 const AddProductForm = () => {
-    const [img, setImg] = React.useState(null)
+    const [img, setImg] = React.useState<null | File>(null)
     const [info, setInfo] = React.useState<IProductInfo[]>([])
-    const { brands, products, types } = useAppSelector(state => state.shop)
+    const { brands, types } = useAppSelector(state => state.shop)
+    const dispatch = useDispatch()
+
+
 
     const formik = useFormik({
         initialValues: {
@@ -21,8 +26,21 @@ const AddProductForm = () => {
             brand: 1,
         },
 
-        onSubmit: (values, { resetForm, setSubmitting }) => {
-            console.log(values);
+        onSubmit: async (values, { resetForm, setSubmitting }) => {
+            setSubmitting(true)
+
+            const fd = new FormData()
+            fd.append("name", values.name)
+            fd.append("price", values.price)
+            fd.append("img", img!)
+            fd.append("brandId", `${values.brand}`)
+            fd.append("typeId", `${values.type}`)
+            fd.append("info", JSON.stringify(info))
+
+            dispatch(createProduct(fd))
+            setSubmitting(false)
+            setInfo([])
+            resetForm()
         },
 
         validationSchema: Yup.object().shape({
@@ -33,7 +51,9 @@ const AddProductForm = () => {
         })
     })
 
-
+    const handleRemoveInfo = (title: string) => {
+        setInfo(info.filter(i => i.title !== title))
+    }
 
     return (
         <div className="admin__create__block">
@@ -59,7 +79,7 @@ const AddProductForm = () => {
                         <div className="admin__charact__title">{i.title}</div>
                         <div className="admin__charact__desc">{i.description}</div>
                         <AiFillCloseCircle size={18} color="red" className="admin__charact__remove"
-                        />
+                            onClick={() => handleRemoveInfo(i.title)} />
                     </li>)}
                 </ul>
 

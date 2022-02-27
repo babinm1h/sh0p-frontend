@@ -31,3 +31,30 @@
         margin-right: 30px;
     }
 }
+.characts {
+    background-color: #fff;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 22px;
+    .charactsTitle {
+        font-weight: bold;
+        font-size: 22px;
+    }
+    .charactsList {
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+    }
+    .charactsItem {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    .charactsName {
+        font-weight: 500;
+        flex: 0 1 300px;
+    }
+    .charactsDescr {
+        flex: 0 1 auto;
+    }
+}

@@ -2,8 +2,11 @@ import { useFormik } from 'formik';
 import React from 'react';
 import FormControl from '../UI/FormControl/FormControl';
 import * as Yup from "yup"
+import { useDispatch } from 'react-redux';
+import { createType } from '../../store/actions/shop';
 
 const AddTypeForm = () => {
+    const dispatch = useDispatch()
 
     const formik = useFormik({
         initialValues: {
@@ -11,7 +14,10 @@ const AddTypeForm = () => {
         },
 
         onSubmit: (values, { resetForm, setSubmitting }) => {
-
+            setSubmitting(true)
+            dispatch(createType(values.name))
+            resetForm()
+            setSubmitting(false)
         },
 
         validationSchema: Yup.object().shape({
@@ -31,7 +37,7 @@ const AddTypeForm = () => {
                 </div>
 
                 <button className="btn" type="submit"
-                    disabled={!!formik.errors.name || formik.values.name.length === 0}>
+                    disabled={!!formik.errors.name || formik.values.name.length === 0 || formik.isSubmitting}>
                     Добавить тип
                 </button>
             </form>

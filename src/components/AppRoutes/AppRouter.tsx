@@ -1,19 +1,19 @@
 import React from 'react';
 import { Route, Routes } from 'react-router';
-import Shop from '../../pages/Shop/Shop';
+import { useAppSelector } from '../../hooks/redux';
 import { authRoutes, publicRoutes } from '../../routes';
 
 const AppRouter = () => {
 
-    const isAuth = false
+    const { isAuth } = useAppSelector(state => state.user)
 
     return (
         <>
             <Routes>
-                <Route path="/*" element={<Shop />} />
-                {publicRoutes.map(r => <Route path={r.path} element={r.elem} key={r.path} />)}
+                {isAuth && authRoutes.map(r =>
+                    <Route path={r.path} element={r.element} key={r.path} />)}
 
-                {isAuth && authRoutes.map(r => <Route path={r.path} element={r.elem} key={r.path} />)}
+                {publicRoutes.map(r => <Route path={r.path} element={r.element} key={r.path} />)}
             </Routes>
         </>
     );

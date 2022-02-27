@@ -7,6 +7,7 @@ export class UserApi {
     static async registration(email: string, password: string): Promise<IUser> {
         const res = await $host.post<string>(`api/user/registr`, { email, password })
         localStorage.setItem("token", res.data)
+        console.log(jwt_decode(res.data));
         return jwt_decode(res.data)
     }
 
@@ -25,5 +26,5 @@ export class UserApi {
         return jwt_decode(res.data)
     }
 
-    
+
 }

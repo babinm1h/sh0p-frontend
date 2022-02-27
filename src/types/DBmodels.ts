@@ -10,7 +10,11 @@ export interface IProduct {
     img: string
     name: string
     price: number
+    info: IProductInfo[]
+    typeId: number
+    brandId: number
 }
+
 
 
 export interface IBrand {

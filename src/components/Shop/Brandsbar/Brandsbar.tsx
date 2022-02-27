@@ -13,9 +13,19 @@ const Brandsbar = () => {
         dispatch(setActiveBrand(brand))
     }
 
+    const onSetAllBrands = () => {
+        dispatch(setActiveBrand({} as IBrand))
+    }
+
     return (
         <div className="brands">
             <ul className="brands__list">
+                <li onClick={onSetAllBrands} className={!activeBrand.id
+                    ? "brands__list__item brands__list__item_active"
+                    : "brands__list__item"}>
+                    Все бренды
+                </li>
+
                 {brands.map(b => <li key={b.id} onClick={() => handleSetActive(b)}
                     className={activeBrand.id === b.id ? "brands__list__item brands__list__item_active"
                         : "brands__list__item"}>

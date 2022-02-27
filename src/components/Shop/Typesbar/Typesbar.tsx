@@ -13,10 +13,19 @@ const Typesbar = () => {
         dispatch(setActiveType(type))
     }
 
+    const onSetAllTypes = () => {
+        dispatch(setActiveType({} as IType))
+    }
+
     return (
         <div className="types">
             <ul className="types__list">
                 <h2 className="types__list__title">Тип товара</h2>
+
+                <li onClick={onSetAllTypes} className={!activeType.id
+                    ? "types__list__item types__list__item_active" : "types__list__item"}>
+                    Все типы
+                </li>
                 {types.map(t => <li key={t.id} onClick={() => handleSetActive(t)} className={activeType.id === t.id ? "types__list__item types__list__item_active" : "types__list__item"}>
                     {t.name}
                 </li>)}

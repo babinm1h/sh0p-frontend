@@ -18,7 +18,7 @@ const ProductItem: React.FC<IProductItemProps> = ({ product }) => {
             </NavLink>
 
             <div className="product__data">
-                <NavLink to={AllRoutes.PRODUCT + `/1`}>
+                <NavLink to={AllRoutes.PRODUCT + `/${product.id}`}>
                     <h1 className="product__name">{product.name}</h1>
                 </NavLink>
             </div>

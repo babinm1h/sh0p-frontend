@@ -29,16 +29,16 @@ const Header = () => {
                                     <li className="header__actions__item">
                                         <NavLink to={AllRoutes.CART}>Корзина</NavLink>
                                     </li>
-                                    <li className="header__actions__item">
+                                    {user?.role === "ADMIN" && <li className="header__actions__item">
                                         <NavLink to={AllRoutes.ADMIN}>Админ панель</NavLink>
-                                    </li>
+                                    </li>}
                                     <li className="header__actions__item">
                                         <button className="btn_outlined" onClick={handleLogout}>
                                             Выйти
                                         </button>
                                     </li>
                                     <li className="header__actions__item">
-                                        <span>{user?.email}</span>
+                                        <span className="header__email">{user?.email}</span>
                                     </li>
                                 </>
                                 : <li className="header__actions__item">

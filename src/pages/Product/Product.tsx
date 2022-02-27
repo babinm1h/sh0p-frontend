@@ -33,6 +33,18 @@ const Product = () => {
                         <button className={s.btn + " btn"}>Купить</button>
                     </div>
                 </div>
+
+                {product?.info.length ? <div className={s.characts}>
+                    <h2 className={s.charactsTitle}>Характеристики:</h2>
+                    <ul className={s.charactsList}>
+                        {product?.info.map(i => <li className={s.charactsItem} key={i.title}>
+                            <div className={s.charactsName}>{i.title}</div>
+                            <div className={s.charactsDescr}>{i.description}</div>
+                        </li>)}
+                    </ul>
+                </div> : null}
+
+
             </div>
         </>
     );
