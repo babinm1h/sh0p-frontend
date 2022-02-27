@@ -1,0 +1,40 @@
+@import "../../../variables.scss";
+
+.products {
+    &__list {
+        display: flex;
+        flex-direction: column;
+    }
+}
+.product {
+    display: flex;
+    margin-bottom: 25px;
+    width: 100%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 22px;
+    box-shadow: 0 1px 1px #999;
+    &__img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+    }
+    &__data {
+        flex: 1 1 auto;
+        margin: 0 20px;
+    }
+    &__name {
+        font-size: 22px;
+        color: black;
+    }
+    &__price-block {
+        display: flex;
+        flex-direction: column;
+    }
+    &__price {
+        margin-bottom: 15px;
+        font-weight: bold;
+        font-size: 20px;
+        align-self: flex-end;
+    }
+}

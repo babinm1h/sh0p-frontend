@@ -1,0 +1,12 @@
+.shop {
+    display: flex;
+    &__column1 {
+        flex: 0 1 25%;
+        padding-right: 30px;
+    }
+    &__column2 {
+        flex: 0 1 75%;
+        display: flex;
+        flex-direction: column;
+    }
+}

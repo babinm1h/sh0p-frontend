@@ -1,0 +1,14 @@
+@import "../../../variables.scss";
+.form__input {
+    border-bottom: 1px solid $blc;
+    padding: 5px;
+    margin-bottom: 5px;
+    &-error {
+        border-bottom: 1px solid red;
+    }
+}
+.form__label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}

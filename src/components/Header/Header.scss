@@ -1,0 +1,28 @@
+@import "../../variables.scss";
+.header {
+    padding: 15px 0;
+    background-color: $blc;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    &__row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &__actions {
+        display: flex;
+        align-items: center;
+        &__item {
+            margin-left: 30px;
+            a {
+                color: white;
+                font-size: 15px;
+            }
+        }
+    }
+    &__logo {
+        font-size: 20px;
+        color: white;
+    }
+}
