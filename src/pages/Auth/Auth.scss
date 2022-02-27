@@ -40,4 +40,8 @@
             color: $blc;
         }
     }
+    &__server__error {
+        color: red;
+        margin-top: 10px;
+    }
 }

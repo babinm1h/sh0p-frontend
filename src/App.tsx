@@ -1,8 +1,24 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import AppRouter from './components/AppRoutes/AppRouter';
 import Header from './components/Header/Header';
+import Loader from './components/Loader/Loader';
+import { useAppSelector } from './hooks/redux';
+import { checkAuth } from './store/actions/user';
 
 const App = () => {
+  const dispatch = useDispatch()
+  const { isLoading, } = useAppSelector(state => state.user)
+
+  React.useEffect(() => {
+    dispatch(checkAuth())
+  }, [])
+
+
+  if (isLoading) {
+    return <div className="loader"><Loader /></div>
+  }
+
   return (
     <>
       <Header />

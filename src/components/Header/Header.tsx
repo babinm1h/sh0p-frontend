@@ -1,11 +1,18 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { useAppSelector } from '../../hooks/redux';
 import { AllRoutes } from '../../routes';
+import { logout } from '../../store/reducers/userSlice';
 import "./Header.scss"
 
 const Header = () => {
+    const dispatch = useDispatch()
     const { isAuth, user } = useAppSelector(state => state.user)
+
+    const handleLogout = () => {
+        dispatch(logout())
+    }
 
     return (
         <>
@@ -26,7 +33,12 @@ const Header = () => {
                                         <NavLink to={AllRoutes.ADMIN}>Админ панель</NavLink>
                                     </li>
                                     <li className="header__actions__item">
-                                        <button className="btn_outlined">Выйти</button>
+                                        <button className="btn_outlined" onClick={handleLogout}>
+                                            Выйти
+                                        </button>
+                                    </li>
+                                    <li className="header__actions__item">
+                                        <span>{user?.email}</span>
                                     </li>
                                 </>
                                 : <li className="header__actions__item">

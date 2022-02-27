@@ -1,13 +1,25 @@
 import { useFormik } from 'formik';
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { NavLink, useNavigate } from 'react-router-dom';
 import * as Yup from "yup"
+import { useAppSelector } from '../../hooks/redux';
 import "../../pages/Auth/Auth.scss"
 import { AllRoutes } from '../../routes';
+import { login } from '../../store/actions/user';
 import FormControl from '../UI/FormControl/FormControl';
 
 
 const LoginForm = () => {
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const { error, isAuth } = useAppSelector(state => state.user)
+
+
+    React.useEffect(() => {
+        if (isAuth) navigate(AllRoutes.SHOP)
+    }, [isAuth])
+
 
     const formik = useFormik({
         initialValues: {
@@ -16,7 +28,10 @@ const LoginForm = () => {
         },
 
         onSubmit: (values, { resetForm, setSubmitting }) => {
-
+            setSubmitting(true)
+            dispatch(login({ email: values.email, password: values.password }))
+            if (!error) navigate(AllRoutes.SHOP)
+            setSubmitting(false)
         },
 
         validationSchema: Yup.object().shape({
@@ -44,8 +59,10 @@ const LoginForm = () => {
                 {formik.errors.password && <div className="auth__form__error">{formik.errors.password}</div>}
             </div>
 
+            {error && <div className="auth__server__error">{error}</div>}
+
             <div className="auth__actions">
-                <button className="btn" type="submit" disabled={!!formik.errors.email || !formik.errors.password || formik.isSubmitting}>
+                <button className="btn" type="submit" disabled={!!formik.errors.email || !!formik.errors.password || formik.isSubmitting}>
                     Войти
                 </button>
 
