@@ -33,7 +33,6 @@ const Shop = () => {
 
                 <div className="shop__column2">
                     <Brandsbar />
-                    <Search />
                     <ProductsList />
                     <Pagintation />
                 </div>

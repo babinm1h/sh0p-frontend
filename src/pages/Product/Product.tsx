@@ -12,6 +12,7 @@ const Product = () => {
     const dispatch = useDispatch()
     const { product, isLoading } = useAppSelector(state => state.productPage)
     const { isAdding, products } = useAppSelector(state => state.cart)
+    const { isAuth } = useAppSelector(state => state.user)
     const { id } = useParams() as { id: string }
 
     React.useEffect(() => {
@@ -35,12 +36,13 @@ const Product = () => {
                     <img src={API_URL + product?.img} alt="img" className={s.productImg} />
                     <div className={s.buy}>
                         <div className={s.price}>{product?.price} ₽</div>
-                        {id && products.map(p => p.productId).includes(Number(id))
+                        {isAuth ? id && products.map(p => p.productId).includes(Number(id))
                             ? <button className={s.btn + " btn"} disabled>В корзине</button>
                             : <button className={s.btn + " btn"} disabled={isAdding}
                                 onClick={handleAddToCart}>
                                 Купить
-                            </button>}
+                            </button>
+                            : <button className="btn" disabled>Зарегестрируйтесь</button>}
                     </div>
                 </div>
 

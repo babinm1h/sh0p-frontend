@@ -1,3 +1,4 @@
+@import "../../variables.scss";
 .cart {
     &__items {
         display: flex;
@@ -28,6 +29,7 @@
         &__name {
             font-weight: bold;
             font-size: 20px;
+            color: $blc;
         }
         &__price {
             margin-top: 10px;

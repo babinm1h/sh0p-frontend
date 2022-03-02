@@ -1,8 +1,10 @@
 import React from 'react';
 import { AiFillMinusCircle, AiFillPlusCircle } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { API_URL } from '../../../API/instance';
 import { useAppSelector } from '../../../hooks/redux';
+import { AllRoutes } from '../../../routes';
 import { decrProduct, incrProduct, removeCartProduct } from '../../../store/actions/cart';
 import { ICartProduct } from '../../../types/DBmodels';
 
@@ -30,9 +32,13 @@ const CartItem: React.FC<ICartItemProps> = ({ product }) => {
 
     return (
         <li className="cart__item">
-            <img src={API_URL + product.product.img} alt="product" className="cart__item__img" />
+            <Link to={AllRoutes.PRODUCT + `/${product.productId}`}>
+                <img src={API_URL + product.product.img} alt="product" className="cart__item__img" />
+            </Link>
             <div className="cart__item__data">
-                <h1 className="cart__item__name">{product.product.name}</h1>
+                <Link to={AllRoutes.PRODUCT + `/${product.productId}`}>
+                    <h1 className="cart__item__name">{product.product.name}</h1>
+                </Link>
                 <div className="cart__item__price">{product.product.price} ₽</div>
             </div>
             <div className="cart__item__quantity">
