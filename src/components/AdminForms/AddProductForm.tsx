@@ -40,6 +40,7 @@ const AddProductForm = () => {
             dispatch(createProduct(fd))
             setSubmitting(false)
             setInfo([])
+            setImg(null)
             resetForm()
         },
 

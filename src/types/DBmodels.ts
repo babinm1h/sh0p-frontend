@@ -38,3 +38,12 @@ export interface IUser {
     role: "USER" | "ADMIN"
     id: number
 }
+
+
+export interface ICartProduct {
+    quan: number
+    id: number
+    cartId: number
+    productId: number
+    product: IProduct
+}

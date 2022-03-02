@@ -1,0 +1,87 @@
+.cart {
+    &__items {
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+    }
+    &__title {
+        font-size: 24px;
+        font-weight: bold;
+    }
+    &__item {
+        display: flex;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 22px;
+        align-items: center;
+        box-shadow: 0 1px 1px #999;
+        margin-bottom: 20px;
+        &__img {
+            width: 100px;
+            height: 110px;
+            object-fit: cover;
+            margin-right: 25px;
+        }
+        &__data {
+            flex: auto;
+        }
+        &__name {
+            font-weight: bold;
+            font-size: 20px;
+        }
+        &__price {
+            margin-top: 10px;
+            font-size: 18px;
+        }
+        &__quantity {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+        &__count {
+            font-weight: bold;
+            font-size: 20px;
+            margin: 0 10px;
+        }
+        &__icon {
+            cursor: pointer;
+        }
+        &__remove {
+            border-radius: 22px;
+            padding: 5px 20px;
+            border: 1px solid red;
+            transition: all 0.15s ease-in-out;
+            background-color: #fff;
+            &:hover {
+                background-color: rgba(red, 0.1);
+            }
+        }
+    }
+    &__total {
+        background-color: #fff;
+        margin-top: 30px;
+        padding: 20px;
+        border-radius: 22px;
+        &__price {
+            font-size: 20px;
+            margin-bottom: 10px;
+            span {
+                font-weight: bold;
+                font-size: 20px;
+            }
+        }
+        &__count {
+            font-size: 20px;
+            margin-bottom: 20px;
+            span {
+                font-weight: bold;
+                font-size: 20px;
+            }
+        }
+        .btn {
+            font-size: 20px;
+            padding: 0 30px;
+            border-radius: 0;
+        }
+    }
+}

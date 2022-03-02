@@ -25,9 +25,9 @@ const AddInfoForm: React.FC<IAddInfoFormProps> = ({ setInfo, info }) => {
 
         validationSchema: Yup.object().shape({
             title: Yup.string().required()
-                .min(2, "Длина от 2 до 20 сивмолов").max(20, "Длина от 2 до 20 сивмолов"),
+                .min(2, "Длина от 2 до 20 сивмолов").max(35, "Длина от 2 до 35 сивмолов"),
             description: Yup.string().required()
-                .min(1, "Длина от 1 до 20 сивмолов").max(25, "Длина от 2 до 25 сивмолов"),
+                .min(1, "Длина от 1 до 20 сивмолов").max(35, "Длина от 2 до 25 сивмолов"),
         })
     })
     

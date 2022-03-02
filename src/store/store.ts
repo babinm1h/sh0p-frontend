@@ -1,4 +1,5 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit"
+import cartSlice from "./reducers/cartSlice"
 import productPageSlice from "./reducers/productPageSlice"
 import shopSlice from "./reducers/shopSlice"
 import userSlice from "./reducers/userSlice"
@@ -7,7 +8,8 @@ import userSlice from "./reducers/userSlice"
 const rootReducer = combineReducers({
     user: userSlice,
     shop: shopSlice,
-    productPage: productPageSlice
+    productPage: productPageSlice,
+    cart: cartSlice
 })
 
 

@@ -1,7 +1,10 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { API_URL } from '../../../../API/instance';
+import { useAppSelector } from '../../../../hooks/redux';
 import { AllRoutes } from '../../../../routes';
+import { addToCart } from '../../../../store/actions/cart';
 import { IProduct } from '../../../../types/DBmodels';
 import "../ProductsList.scss"
 
@@ -11,6 +14,14 @@ interface IProductItemProps {
 }
 
 const ProductItem: React.FC<IProductItemProps> = ({ product }) => {
+    const dispatch = useDispatch()
+    const { isAdding, products } = useAppSelector(state => state.cart)
+    const { isAuth } = useAppSelector(state => state.user)
+
+    const handleAddToCart = () => {
+        dispatch(addToCart(product.id))
+    }
+
     return (
         <li className="products__list__item product">
             <NavLink to={AllRoutes.PRODUCT + `/${product.id}`}>
@@ -24,9 +35,16 @@ const ProductItem: React.FC<IProductItemProps> = ({ product }) => {
             </div>
             <div className="product__price-block">
                 <div className="product__price">{product.price} ₽</div>
-                <button className="btn">В корзину</button>
+                {isAuth
+                    ? products.map(p => p.productId).includes(product.id)
+                        ? <button className="btn" disabled>
+                            В корзине
+                        </button>
+                        : <button className="btn" onClick={handleAddToCart} disabled={isAdding}>
+                            В корзину
+                        </button>
+                    : <button className="btn" disabled>Зарегестрируйтесь</button>}
             </div>
-
         </li>
     );
 };

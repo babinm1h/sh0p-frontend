@@ -11,6 +11,10 @@ const ProductsList = () => {
         return <Loader />
     }
 
+    if (products.length === 0) {
+        return <div className="empty__title">Товары не найдены</div>
+    }
+
     return (
         <div className="products">
             <ul className="products__list">
